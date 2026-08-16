@@ -1,6 +1,6 @@
 # NASA Natural Events Tracker
 
-NASA Natural Events Tracker is a Flask web application that uses NASA's EONET API to display real-world natural events. Users can browse live events, filter them by status, category, and number of days, vies detailed event information, and save selected events to a personal watch list stored in SQLite.
+NASA Natural Events Tracker is a Flask web application that uses NASA's EONET API to display real-world natural events. Users can browse live events, filter them by status, category, and number of days, views detailed event information, and save selected events to a personal watch list stored in SQLite.
 
 ## Features
 
