@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}
+Watch List
+{% endblock %}
+
+{% block content %}
+
+<h1>Watch List</h1>
+
+<ul>
+    {% for event in watched_events %}
+    <li>
+        Title: {{ event[1] }}<br>
+        Category: {{ event[2] }}<br>
+        Status: {{ event[3] }}<br>
+        Date: {{ event[4] }}<br>
+        Note: {{ event[5] }}
+        <a href="/watch/note/{{ event[0] }}">Edit Note</a>
+        <form method="POST" action="/watch/remove/{{ event[0] }}"
+            onsubmit="return confirm('Are you sure you want to remove this event?');">
+            <button type="submit">Remove</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+{{ event.title }}
+{% endblock %}
+
+
+{% block content %}
+
+<h1>{{ event.title }}</h1>
+
+<p><strong>Category: </strong>{{ event.category }}</p>
+
+<p><strong>Status: </strong>{{ event.status }}</p>
+
+<p><strong>Date: </strong>{{ event.event_date }}</p>
+
+<p><strong>Latitude: </strong>{{ event.latitude }}</p>
+
+<p><strong>Longitude: </strong>{{ event.longitude }}</p>
+
+{% if event.magnitude is not none %}
+<p><strong>Magnitude: </strong>{{ event.magnitude }} {{event.mag_unit }}</p>
+{% endif %}
+
+<p>
+    <strong>Source: </strong>
+    <a href="{{ event.source_url }}" target="_blank">
+        View Source
+    </a>
+</p>
+
+<a href="/browse">Back to Browse</a>
+
+{% endblock %}

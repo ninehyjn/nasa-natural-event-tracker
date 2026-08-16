@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}
+Browse Events
+{% endblock %}
+
+{% block content %}
+
+<h1>Browse Events</h1>
+
+<form method="GET" action="/browse">
+    <label>Status:</label>
+
+    <select name="status">
+        <option value="open" {% if request.args.get("status", "open" )=="open" %} selected {% endif %}>
+            Open
+        </option>
+
+        <option value="closed" {% if request.args.get("status")=="closed" %} selected {% endif %}>
+            Closed
+        </option>
+
+        <option value="all" {% if request.args.get("status")=="all" %} selected {% endif %}>
+            All
+
+        </option>
+
+    </select>
+
+
+    <label>Category:</label>
+
+    <select name="category">
+        <option value="">All Categories</option>
+
+        {% for category in categories %}
+        <option value="{{ category[0] }}" {% if request.args.get("category")==category[0] %} selected {% endif %}>
+            {{category[1] }}
+        </option>
+        {% endfor %}
+
+    </select>
+
+
+    <label>Days:</label>
+
+    <input type="number" name="days" value="{{ request.args.get('days', 30 )}}">
+
+    <button type="submit">
+        Filter
+    </button>
+
+</form>
+
+<ul>
+    {% for event in events %}
+    <li>
+        <a href="/event/{{ event.eonet_id }}">
+            {{ event.title}}
+        </a><br>
+
+        Category: {{ event.category }}<br>
+        Status: {{ event.status }}<br>
+        Date: {{ event.event_date }}<br>
+        Coordinates: {{ event.latitude }}, {{ event.longitude }}<br>
+
+        {% if event.eonet_id in watched_ids %}
+
+        <strong>In Watch List</strong>
+
+        {% else %}
+
+        <form method="POST" action="/watch/add/{{ event.eonet_id }}">
+            <button type="submit">Add to Watch List</button>
+        </form>
+
+        {% endif %}
+
+    </li>
+    {% endfor %}
+</ul>
+
+
+
+{% endblock %}

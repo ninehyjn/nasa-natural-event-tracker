@@ -1,0 +1,5 @@
+events.db
+.venu/
+__pycache__/
+*.pyc
+.DS_Store
